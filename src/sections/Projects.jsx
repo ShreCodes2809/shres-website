@@ -2,40 +2,40 @@ import { ArrowUpRight, Github } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 const projects = [
   {
-    title: "Fintech Dashboard",
+    title: "Multi-Agent Trading Floor Simulation",
     description:
-      "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
-    image: "projects/project1.png",
-    tags: ["React", "Typescript", "NodeJS"],
+      "A fully modular, real-time trading floor simulation featuring autonomous trader agents, custom market microstructure, account management, and a live Gradio dashboard for monitoring trades, positions, balances, and tracer events.",
+    image: "projects/1.jpg",
+    tags: ["Python", "MCP", "FastAPI", "Trading"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ShreCodes2809/mcp-first-project",
   },
   {
-    title: "E-Commerce Platform",
+    title: "Sidekick",
     description:
-      "A full-featured e-commerce solution with inventory management, payment processing, and analytics dashboard.",
-    image: "projects/project2.png",
-    tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
+      "A modular, graph-driven LLM agent built using LangGraph, designed to autonomously interpret user queries, route tasks intelligently, and trigger dynamic tool-based actions with structured state transitions.",
+    image: "projects/2.jpg",
+    tags: ["Python", "LangGraph", "LangChain", "Modular Code"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ShreCodes2809/langgraph-sidekick-project",
   },
   {
-    title: "AI Writing Assistant",
+    title: "Privacy Enhancing ML for Job Interview Analysis",
     description:
-      "An intelligent writing tool powered by GPT-4, helping users create better content faster.",
-    image: "projects/project3.png",
-    tags: ["React", "OpenAI", "Python", "FastAPI"],
+      "This project explores privacy-preserving machine learning techniques to assess communication quality in job interviews. The focus is on developing fair, ethical, and privacy-enhancing models for automated job interview evaluations.",
+    image: "projects/3.jpg",
+    tags: ["Python", "NLP", "Neural Networks", "Feature Engineering", "Data Exploration"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ShreCodes2809/privacy-aware-interview-ml",
   },
   {
-    title: "Project Management Tool",
+    title: "ScaleFlow: AI-Powered Supply Chain Risk Prediction",
     description:
-      "A collaborative workspace for teams with real-time updates, task tracking, and integrations.",
-    image: "projects/project4.png",
-    tags: ["Next.js", "Socket.io", "MongoDB", "Redis"],
+      "ScaleFlow is a full-stack, containerized platform that uses machine learning models, batch-processed data pipelines, and a real-time chatbot interface driven by artificial intelligence to forecast supply chain risks.",
+    image: "projects/4.jpg",
+    tags: ["Apache Airflow", "Docker", "Python", "PostgreSQL", "MLFlow"],
     link: "#",
-    github: "#",
+    github: "https://github.com/ShreCodes2809/scaleflow",
   },
 ];
 
@@ -91,12 +91,6 @@ export const Projects = () => {
                 />
                 {/* Overlay Links */}
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.link}
-                    className="p-3 rounded-full glass accent-icon transition-all hover:bg-surface/70"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </a>
                   <a
                     href={project.github}
                     className="p-3 rounded-full glass accent-icon transition-all hover:bg-surface/70"
