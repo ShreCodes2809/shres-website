@@ -5,6 +5,7 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Instagram,
   Download,
 } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
