@@ -29,6 +29,8 @@ const skills = [
 ];
 
 export const Hero = () => {
+  const heroBackgroundSrc = `${import.meta.env.BASE_URL}hero-bg.jpg`;
+  const profilePhotoSrc = `${import.meta.env.BASE_URL}profile-photo.jpg`;
   const resumeUrl =
     "https://drive.google.com/file/d/1Vgm4toEJ6CYxX1yTBmQXETQz8uxfJgrr/view?usp=sharing";
 
@@ -48,8 +50,9 @@ export const Hero = () => {
       {/* Bg */}
       <div className="absolute inset-0">
         <img
-          src="/hero-bg.jpg"
-          alt="Hero image"
+          src={heroBackgroundSrc}
+          alt=""
+          aria-hidden="true"
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
@@ -144,7 +147,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="/profile-photo.jpg"
+                  src={profilePhotoSrc}
                   alt="Shreyash Sahare"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
