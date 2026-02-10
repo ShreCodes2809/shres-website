@@ -14,22 +14,27 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "pedro@example.com",
-    href: "mailto:pedro@example.com",
+    value: "shreyash.jobs0901@gmail.com",
+    href: "mailto:shreyash.jobs0901@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+1 (720) 255 4636",
+    href: "tel:+17202554636",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "San Francisco, CA",
+    value: "Boulder, CO",
     href: "#",
   },
 ];
+
+const primaryContactEmail =
+  contactInfo.find((item) => item.label === "Email")?.value ||
+  import.meta.env.VITE_CONTACT_EMAIL ||
+  "";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -66,6 +71,7 @@ export const Contact = () => {
           name: formData.name,
           email: formData.email,
           message: formData.message,
+          to_email: primaryContactEmail,
         },
         publicKey
       );
@@ -76,11 +82,11 @@ export const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("EmailJS error:", error);
+      console.error("EmailJS error:", err);
       setSubmitStatus({
         type: "error",
         message:
-          error.text || "Failed to send message. Please try again later.",
+          err?.text || err?.message || "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -101,7 +107,7 @@ export const Contact = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
             Let's build{" "}
-            <span className="font-serif italic font-normal text-white">
+            <span className="font-serif italic font-normal accent-text">
               something great.
             </span>
           </h2>
@@ -143,6 +149,8 @@ export const Contact = () => {
                   Email
                 </label>
                 <input
+                  id="email"
+                  type="email"
                   required
                   placeholder="your@email.com"
                   value={formData.email}
@@ -219,16 +227,16 @@ export const Contact = () => {
                   <a
                     key={i}
                     href={item.href}
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
+                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group accent-link"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
+                      <item.icon className="w-5 h-5 accent-icon" />
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">
                         {item.label}
                       </div>
-                      <div className="font-medium">{item.value}</div>
+                      <div className="font-medium accent-text">{item.value}</div>
                     </div>
                   </a>
                 ))}

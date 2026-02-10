@@ -10,29 +10,41 @@ import {
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "GraphQL",
+  "Python",
+  "Tensorflow",
+  "PyTorch",
+  "Apache Airflow",
+  "Terraform",
   "PostgreSQL",
-  "MongoDB",
   "Redis",
   "Docker",
   "AWS",
   "Vercel",
-  "Tailwind CSS",
-  "Prisma",
-  "Jest",
-  "Cypress",
-  "Figma",
+  "Kubernetes",
+  "MCP",
+  "Tableau",
+  "CrewAI",
   "Git",
   "GitHub Actions",
 ];
 
 export const Hero = () => {
+  const resumeUrl =
+    "https://drive.google.com/file/d/1Vgm4toEJ6CYxX1yTBmQXETQz8uxfJgrr/view?usp=sharing";
+
+  const handleContactClick = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleResumeClick = () => {
+    window.open(resumeUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Bg */}
       <div className="absolute inset-0">
         <img
@@ -43,13 +55,13 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
       </div>
 
-      {/* Green Dots */}
+      {/* Accent Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(30)].map((_, i) => (
           <div
             className="absolute w-1.5 h-1.5 rounded-full opacity-60"
             style={{
-              backgroundColor: "#20B2A6",
+              backgroundColor: "var(--color-highlight)",
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animation: `slow-drift ${
@@ -67,36 +79,36 @@ export const Hero = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Software Engineer • React Specialist
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm accent-text">
+                <span
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ backgroundColor: "var(--color-highlight-hover)" }}
+                />
+                Machine Learning Engineer • Data Scientist
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting <span className="text-primary glow-text">digital</span>
+                Simplifying <span className="accent-text glow-text">ML systems</span>
                 <br />
-                experiences with
-                <br />
-                <span className="font-serif italic font-normal text-white">
-                  precision.
-                </span>
+                with <span className="font-serif italic font-normal accent-text">rigor.</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Pedro Machado — a software engineer specializing in
-                React, Next.js, and TypeScript. I build scalable, performant web
-                applications that users love.
+                Hi, I'm Shreyash Sahare — a machine learning engineer specializing in
+                Python, agentic frameworks, and MLOps best practices. My work spans data ingestion, 
+                feature engineering, model development, and deploying reliable ML pipelines that 
+                can scale beyond prototypes.
               </p>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
+              <Button size="lg" onClick={handleContactClick}>
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
+              <AnimatedBorderButton onClick={handleResumeClick}>
                 <Download className="w-5 h-5" />
                 Download CV
               </AnimatedBorderButton>
@@ -106,14 +118,14 @@ export const Hero = () => {
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">Follow me: </span>
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Twitter, href: "#" },
+                { icon: Github, href: "https://github.com/ShreCodes2809" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/shreyashsahare/" },
+                // { icon: Twitter, href: "" },
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
-                  className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-2 rounded-full glass accent-icon transition-all duration-300 hover:bg-surface/70"
                 >
                   {<social.icon className="w-5 h-5" />}
                 </a>
@@ -133,7 +145,7 @@ export const Hero = () => {
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
                   src="/profile-photo.jpg"
-                  alt="Pedro Machado"
+                  alt="Shreyash Sahare"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
 
@@ -148,7 +160,7 @@ export const Hero = () => {
                 </div>
                 {/* Stats Badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                  <div className="text-2xl font-bold text-primary">5+</div>
+                  <div className="text-2xl font-bold accent-text">3+</div>
                   <div className="text-xs text-muted-foreground">
                     Years Exp.
                   </div>
@@ -191,7 +203,7 @@ export const Hero = () => {
       >
         <a
           href="#about"
-          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+          className="flex flex-col items-center gap-2 accent-link transition-colors group"
         >
           <span className="text-xs uppercase tracking-wider">Scroll</span>
           <ChevronDown className="w-6 h-6 animate-bounce" />

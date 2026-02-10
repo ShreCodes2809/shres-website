@@ -1,45 +1,116 @@
+import { useEffect, useRef, useState } from "react";
+
 const experiences = [
   {
-    period: "2022 — Present",
-    role: "Senior Frontend Engineer",
-    company: "Tech Innovators Inc.",
+    period: "Jan 2026 — Present",
+    role: "Platform Deployment Contributor",
+    company: "Network Theory Applied Research Institute",
     description:
-      "Leading frontend architecture for a suite of fintech products. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+      "Currently working on deploying a pilot node for Agrinet, a protocol aimed at transparent agricultural surplus management amongst growers and consumers.",
+    technologies: ["Docker", "Git", "Amazon DynamoDB", "GitHub Actions"],
     current: true,
   },
   {
-    period: "2020 — 2022",
-    role: "Frontend Engineer",
-    company: "Digital Solutions Co.",
+    period: "Aug 2025 - Jan 2026",
+    role: "Robotics Engineering Intern",
+    company: "Void Robotics",
     description:
-      "Built and maintained multiple React applications for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
-    technologies: ["React", "Redux", "Jest", "Cypress"],
+      "Productized applied computer vision and robotics systems to support automated perception and navigation in real-world environments. Focused on production-ready design, enabling reliable object detection, autonomous movement, and scalable deployment for intelligent robotic applications.",
+    technologies: ["ROS", "Computer Vision", "C++", "Docker", "YOLO"],
     current: false,
   },
   {
-    period: "2019 — 2020",
-    role: "Junior Developer",
-    company: "StartUp Labs",
+    period: "Aug 2025 - Sep 2025",
+    role: "Data Science Expert",
+    company: "Mercor",
     description:
-      "Contributed to the development of a SaaS platform from MVP to production. Collaborated with designers to implement pixel-perfect UI components.",
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
+      "Delivered applied data science and AI evaluation frameworks through stress-testing LLM-based reasoning systems, helping surface reliability gaps and failure modes in complex, multi-step analytical tasks. Primarily focused on decision quality, reliability, and real-world applicability in enterprise AI systems.",
+    technologies: ["Prompt Engineering", "Human-in-the-Loop", "LLM Evaluation", "Statistical Data Analysis"],
     current: false,
   },
   {
-    period: "2018 — 2019",
-    role: "Freelance Developer",
-    company: "Self-Employed",
+    period: "Jan 2025 - May 2025",
+    role: "Data Scientist",
+    company: "Parlay Finance",
     description:
-      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
+      "Built applied machine learning solutions for financial decision systems, supporting faster, more transparent credit assessments in regulated enterprise environments. Focused on decision transparency and operational reliability, helping reduce approval turnarou",
+    technologies: ["Python", "Regression Modeling", "Visualization", "Machine Learning"],
+    current: false,
+  },
+  {
+    period: "Jun 2022 - Aug 2022",
+    role: "Undergraduate Research Intern",
+    company: "National Institute of Technology, Tiruchirappalli",
+    description:
+      "Conducted applied ML research in medical imaging, contributing to a peer-reviewed publication. Built deep learning models for healthcare image processing, strengthening foundations in applied ML for regulated domains",
+    technologies: ["Python", "Tensorflow", "Scikit Learn", "Deep Learning", "Neural Networks"],
     current: false,
   },
 ];
 
 export const Experience = () => {
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+  const [visibleCards, setVisibleCards] = useState(() =>
+    experiences.map(() => false)
+  );
+  const [timelineProgress, setTimelineProgress] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const cardIndex = Number(entry.target.dataset.cardIndex);
+          setVisibleCards((prev) =>
+            prev.map((isVisible, idx) =>
+              idx === cardIndex ? true : isVisible
+            )
+          );
+        });
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateTimelineProgress = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const totalDistance = rect.height + window.innerHeight * 0.2;
+      const coveredDistance = window.innerHeight * 0.85 - rect.top;
+      const progress = Math.min(Math.max(coveredDistance / totalDistance, 0), 1);
+
+      setTimelineProgress(progress);
+    };
+
+    updateTimelineProgress();
+    window.addEventListener("scroll", updateTimelineProgress, { passive: true });
+    window.addEventListener("resize", updateTimelineProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateTimelineProgress);
+      window.removeEventListener("resize", updateTimelineProgress);
+    };
+  }, []);
+
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-32 relative overflow-hidden"
+      ref={sectionRef}
+    >
       <div
         className="absolute top-1/2 left-1/4 w-96
        h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
@@ -60,7 +131,7 @@ export const Experience = () => {
             text-secondary-foreground"
           >
             Experience that{" "}
-            <span className="font-serif italic font-normal text-white">
+            <span className="font-serif italic font-normal accent-text">
               {" "}
               speaks volumes.
             </span>
@@ -71,31 +142,45 @@ export const Experience = () => {
            animate-fade-in animation-delay-200"
           >
             A timeline of my professional growth, from curious beginner to
-            senior engineer leading teams and building products at scale.
+            an AI/ML practitioner building products at scale.
           </p>
         </div>
 
         {/* Timeline */}
         <div className="relative">
-          <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-border/60 md:-translate-x-1/2" />
+          <div
+            className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(255,155,66,0.45)]"
+            style={{
+              transformOrigin: "top",
+              scale: `1 ${timelineProgress}`,
+            }}
+          />
 
           {/* Experience Items */}
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <div
                 key={idx}
-                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+                className="relative grid md:grid-cols-2 gap-8"
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
-                  {exp.current && (
+                <div
+                  className={`absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10 transition-all duration-500 ease-out ${
+                    visibleCards[idx] ? "opacity-100 scale-100" : "opacity-0 scale-75"
+                  }`}
+                >
+                  {exp.current && visibleCards[idx] && (
                     <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
                   )}
                 </div>
 
                 {/* Content */}
                 <div
+                  ref={(element) => {
+                    cardRefs.current[idx] = element;
+                  }}
+                  data-card-index={idx}
                   className={`pl-8 md:pl-0 ${
                     idx % 2 === 0
                       ? "md:pr-16 md:text-right"
@@ -103,12 +188,18 @@ export const Experience = () => {
                   }`}
                 >
                   <div
-                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
+                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-700 ease-out ${
+                      visibleCards[idx]
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-5"
+                    }`}
                   >
-                    <span className="text-sm text-primary font-medium">
+                    <span className="text-sm font-medium accent-text">
                       {exp.period}
                     </span>
-                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
+                    <h3 className="text-xl font-semibold mt-2 accent-text">
+                      {exp.role}
+                    </h3>
                     <p className="text-muted-foreground">{exp.company}</p>
                     <p className="text-sm text-muted-foreground mt-4">
                       {exp.description}

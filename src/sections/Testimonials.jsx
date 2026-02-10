@@ -79,7 +79,7 @@ export const Testimonials = () => {
             Kind words from{" "}
             <span
               className="font-serif italic 
-            font-normal text-white"
+            font-normal accent-text"
             >
               amazing people.
             </span>
@@ -119,7 +119,7 @@ export const Testimonials = () => {
             {/* Testimonials Navigation */}
             <div className="flex items-center justify-center gap-4 mt-8">
               <button
-                className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
+                className="p-3 rounded-full glass accent-icon transition-all hover:bg-surface/70"
                 onClick={previous}
               >
                 <ChevronLeft />
@@ -140,7 +140,7 @@ export const Testimonials = () => {
 
               <button
                 onClick={next}
-                className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
+                className="p-3 rounded-full glass accent-icon transition-all hover:bg-surface/70"
               >
                 <ChevronRight />
               </button>

@@ -1,11 +1,14 @@
 import { Navbar } from "@/layout/Navbar";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
-import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
-import { Testimonials } from "@/sections/Testimonials";
+import { Education } from "@/sections/Education";
+import { Projects } from "@/sections/Projects";
+// import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { ThemeToggleButton } from "@/components/ThemeToggleButton";
 
 function App() {
   return (
@@ -14,11 +17,14 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Projects />
         <Experience />
-        <Testimonials />
+        <Education />
+        <Projects />
+        {/* <Testimonials /> */}
         <Contact />
       </main>
+      <ThemeToggleButton />
+      <ScrollToTopButton />
       <Footer />
     </div>
   );

@@ -6,11 +6,11 @@
 
   --color-card: #141a1f;
 
-  --color-primary: #20b2a6;
+  --color-primary: #ff7a18;
   --color-primary-foreground: #ffffff;
 
   --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
+  --color-secondary-foreground: #c8641d;
 
   --color-muted: #252e37;
   --color-muted-foreground: #7a8491;
@@ -19,13 +19,25 @@
 
   --radius: 0.75rem;
 
-  --color-highlight: #f5a623;
+  --color-highlight: #c8641d;
   --color-surface: #1a2329;
+  --color-highlight-hover: #ff9b42;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  html[data-theme="day"] {
+    --color-background: #f4f7fb;
+    --color-foreground: #11151c;
+    --color-card: #ffffff;
+    --color-secondary: #e6ebf1;
+    --color-muted: #e3e8ef;
+    --color-muted-foreground: #4f5a67;
+    --color-border: #d2dae4;
+    --color-surface: #f8fafc;
   }
 
   button {
@@ -36,6 +48,7 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: "Inter", sans-serif;
+    transition: background-color 250ms ease, color 250ms ease;
   }
 
   .font-serif {
@@ -48,23 +61,64 @@
     background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    transition: background-color 250ms ease, border-color 250ms ease;
   }
 
   .glass-strong {
     background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
     backdrop-filter: blur(24px);
     border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+    transition: background-color 250ms ease, border-color 250ms ease;
   }
 
   .glow-text {
-    text-shadow: 0 0 30px
-      color-mix(in srgb, var(--color-primary) 50%, transparent);
+    text-shadow: 0 0 40px
+        color-mix(in srgb, var(--color-highlight-hover) 35%, transparent),
+      0 0 80px color-mix(in srgb, var(--color-highlight-hover) 20%, transparent);
   }
 
   .glow-border {
     box-shadow: 0 0 20px
         color-mix(in srgb, var(--color-primary) 20%, transparent),
       inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  }
+
+  .accent-text,
+  .accent-link,
+  .accent-icon {
+    color: var(--color-highlight);
+    transition: color 0.3s ease;
+  }
+
+  .accent-link:hover,
+  .accent-text:hover,
+  .accent-icon:hover {
+    color: var(--color-highlight-hover);
+  }
+
+  .accent-pill {
+    color: var(--color-highlight);
+    background-color: color-mix(
+      in srgb,
+      var(--color-highlight) 10%,
+      transparent
+    );
+    border-color: color-mix(in srgb, var(--color-highlight) 55%, transparent);
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .accent-pill:hover {
+    color: var(--color-highlight-hover);
+    border-color: color-mix(
+      in srgb,
+      var(--color-highlight-hover) 55%,
+      transparent
+    );
+    background-color: color-mix(
+      in srgb,
+      var(--color-highlight-hover) 15%,
+      transparent
+    );
   }
 }
 
@@ -171,9 +225,14 @@
   }
 
   .animated-border:hover {
-    background-color: color-mix(in srgb, #26c4b8 15%, transparent);
+    background-color: color-mix(
+      in srgb,
+      var(--color-highlight-hover) 15%,
+      transparent
+    );
     backdrop-filter: blur(16px);
-    box-shadow: 0 0 20px color-mix(in srgb, #26c4b8 20%, transparent);
+    box-shadow: 0 0 20px
+      color-mix(in srgb, var(--color-highlight-hover) 25%, transparent);
   }
 
   .timeline-glow {

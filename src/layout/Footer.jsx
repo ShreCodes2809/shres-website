@@ -1,16 +1,9 @@
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-];
-
-const footerLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" },
+  { icon: Github, href: "https://github.com/ShreCodes2809", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/shreyashsahare/", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/shreyash._.s2809", label: "Instagram" },
 ];
 
 export const Footer = () => {
@@ -22,26 +15,13 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight">
-              PM<span className="text-primary">.</span>
+            <a href="#" className="text-xl font-bold tracking-tight accent-link">
+              SS<span className="accent-text">.</span>
             </a>
             <p className="text-sm text-muted-foreground mt-2">
-              © {currentYear} Pedro Machado. All rights reserved.
+              © {currentYear} Shreyash Sahare. All rights reserved.
             </p>
           </div>
-
-          {/* Links */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {footerLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
 
           {/* Social Links */}
           <div className="flex items-center gap-4">
@@ -50,7 +30,7 @@ export const Footer = () => {
                 key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all"
+                className="p-2 rounded-full glass accent-icon transition-all hover:bg-surface/70"
               >
                 <social.icon className="w-5 h-5" />
               </a>
