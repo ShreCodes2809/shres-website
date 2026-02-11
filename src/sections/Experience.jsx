@@ -31,7 +31,7 @@ const experiences = [
     role: "Data Scientist",
     company: "Parlay Finance",
     description:
-      "Built applied machine learning solutions for financial decision systems, supporting faster, more transparent credit assessments in regulated enterprise environments. Focused on decision transparency and operational reliability, helping reduce approval turnarou",
+      "Built applied machine learning solutions for financial decision systems, supporting faster, more transparent credit assessments in regulated enterprise environments. Focused on decision transparency and operational reliability, helping reduce approval turnarounds",
     technologies: ["Python", "Regression Modeling", "Visualization", "Machine Learning"],
     current: false,
   },
